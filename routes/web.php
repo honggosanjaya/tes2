@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\dosencontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/dosen',[dosencontroller::class, 'index']);
+Route::get('/dosen/create',[dosencontroller::class, 'create']);
+Route::post('/dosen',[dosencontroller::class, 'store']);
