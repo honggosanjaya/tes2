@@ -20,3 +20,6 @@ Route::get('/', function () {
 Route::get('/dosen',[dosencontroller::class, 'index']);
 Route::get('/dosen/create',[dosencontroller::class, 'create']);
 Route::post('/dosen',[dosencontroller::class, 'store']);
+Route::get('/dosen/edit/{id}',[dosencontroller::class, 'edit']);
+Route::put('/dosen/{id}',[dosencontroller::class, 'update']);
+Route::delete('/dosen/delete/{id}',[dosencontroller::class, 'destroy']);
