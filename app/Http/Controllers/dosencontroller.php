@@ -72,6 +72,7 @@ class dosencontroller extends Controller
      */
     public function show($id)
     {
+        
         //
     }
 
@@ -83,6 +84,11 @@ class dosencontroller extends Controller
      */
     public function edit($id)
     {
+        $dosen=dosen::find($id);
+        return view('dosenedit', [
+            'dosen'=>$dosen
+        ]);
+
         //
     }
 
@@ -95,6 +101,23 @@ class dosencontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $validated = $request->validate([
+            'kode_dosen' => 'required|unique:dosens|max:255',
+            'email' => 'required|unique:dosens|max:255',
+            'nama' => 'required',
+        ]);
+    
+            Dosen::where('id',$id)->update([
+            'nama' => $request -> nama,
+            'kode_dosen' => $request -> kode_dosen,
+            'email' => $request -> email,
+            'created_at' => now(),
+            'updated_at' => now(),
+            ]);
+            $dosens=dosen::get();
+            return view('dosen', [
+                'dosens'=>$dosens
+            ]);
         //
     }
 
@@ -106,6 +129,9 @@ class dosencontroller extends Controller
      */
     public function destroy($id)
     {
+        
+        dosen::find($id)->delete();
+        return redirect('/dosen');
         //
     }
 }
