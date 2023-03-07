@@ -102,6 +102,21 @@ class mahasiswacontroller extends Controller
      */
     public function update(Request $request, $id)
     {
+        $rules=[
+
+            'jurusan' => 'required',
+            'nama' => 'required',
+        ];
+        $mahasiswa=Mahasiswa::find($id);
+        // dd($mahasiswa->NIM);
+        if ($request->NIM!=$mahasiswa->NIM){
+            $rules['NIM']='required|unique:mahasiswas|max:255';
+        }
+        if ($request->email!=$mahasiswa->email){
+            $rules['email']='required|unique:mahasiswas|max:255';
+        }
+        $validated = $request->validate($rules);
+
             Mahasiswa::where('id',$id)->update([
                 'nama' => $request -> nama,
                 'NIM' => $request -> NIM,
