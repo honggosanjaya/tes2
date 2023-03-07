@@ -2,11 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dosencontroller;
-<<<<<<< HEAD
 use App\Http\Controllers\matkulcontroller;
-=======
 use App\Http\Controllers\mahasiswacontroller;
->>>>>>> 4f2fb89e5f4595acdbdd965a7f0986d6dbf568e9
 
 /*
 |--------------------------------------------------------------------------
