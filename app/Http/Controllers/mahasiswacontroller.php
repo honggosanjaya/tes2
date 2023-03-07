@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Dosen;
+use App\Models\Mahasiswa;
 
-class dosencontroller extends Controller
+
+class mahasiswacontroller extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +16,9 @@ class dosencontroller extends Controller
      */
     public function index()
     {
-        $dosens=dosen::get();
-        return view('dosen.index', [
-            'dosens'=>$dosens
+        $mahasiswa=mahasiswa::get();
+        return view('mahasiswa.index', [
+            'mahasiswa'=>$mahasiswa
         ]);
         //
     }
@@ -28,8 +30,7 @@ class dosencontroller extends Controller
      */
     public function create()
     {
-        return view('dosen.create', [
-            'alex' => 'nama'
+        return view('mahasiswa.create', [
         ]);
         //
     }
@@ -45,22 +46,22 @@ class dosencontroller extends Controller
 
         // dd($request->all());
         $validated = $request->validate([
-        'kode_dosen' => 'required|unique:dosens|max:255',
-        'email' => 'required|unique:dosens|max:255',
+        'NIM' => 'required|unique:mahasiswas|max:255',
+        'email' => 'required|unique:mahasiswas|max:255',
+        'jurusan' => 'required',
         'nama' => 'required',
     ]);
 
-        Dosen::create([
+        Mahasiswa::create([
         'nama' => $request -> nama,
-        'kode_dosen' => $request -> kode_dosen,
+        'NIM' => $request -> NIM,
+        'jurusan' => $request -> jurusan,
         'email' => $request -> email,
         'created_at' => now(),
         'updated_at' => now(),
         ]);
-        $dosens=dosen::get();
-        return view('dosen.index', [
-            'dosens'=>$dosens
-        ]);
+        $mahasiswa=dosen::get();
+        return redirect('/mahasiswa');
         //
     }
 
@@ -84,9 +85,9 @@ class dosencontroller extends Controller
      */
     public function edit($id)
     {
-        $dosen=dosen::find($id);
-        return view('dosen.edit', [
-            'dosen'=>$dosen
+        $mahasiswa=mahasiswa::find($id);
+        return view('mahasiswa.edit', [
+            'mahasiswa'=>$mahasiswa
         ]);
 
         //
@@ -101,17 +102,16 @@ class dosencontroller extends Controller
      */
     public function update(Request $request, $id)
     {
-         Dosen::where('id',$id)->update([
-            'nama' => $request -> nama,
-            'kode_dosen' => $request -> kode_dosen,
-            'email' => $request -> email,
-            'created_at' => now(),
-            'updated_at' => now(),
-            ]);
-            $dosens=dosen::get();
-            return view('dosen.index', [
-                'dosens'=>$dosens
-            ]);
+            Mahasiswa::where('id',$id)->update([
+                'nama' => $request -> nama,
+                'NIM' => $request -> NIM,
+                'jurusan' => $request -> jurusan,
+                'email' => $request -> email,
+                'created_at' => now(),
+                'updated_at' => now(),
+                ]);
+                $mahasiswa=dosen::get();
+                return redirect('/mahasiswa');
         //
     }
 
@@ -124,8 +124,8 @@ class dosencontroller extends Controller
     public function destroy($id)
     {
         
-        dosen::find($id)->delete();
-        return redirect('/dosen');
+        mahasiswa::find($id)->delete();
+        return redirect('/mahasiswa');
         //
     }
 }

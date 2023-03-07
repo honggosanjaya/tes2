@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\dosencontroller;
+use App\Http\Controllers\mahasiswacontroller;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,9 @@ Route::post('/dosen',[dosencontroller::class, 'store']);
 Route::get('/dosen/edit/{id}',[dosencontroller::class, 'edit']);
 Route::put('/dosen/{id}',[dosencontroller::class, 'update']);
 Route::delete('/dosen/delete/{id}',[dosencontroller::class, 'destroy']);
+Route::get('/mahasiswa',[mahasiswacontroller::class, 'index']);
+Route::get('/mahasiswa/create',[mahasiswacontroller::class, 'create']);
+Route::post('/mahasiswa',[mahasiswacontroller::class, 'store']);
+Route::get('/mahasiswa/edit/{id}',[mahasiswacontroller::class, 'edit']);
+Route::put('/mahasiswa/{id}',[mahasiswacontroller::class, 'update']);
+Route::delete('/mahasiswa/delete/{id}',[mahasiswacontroller::class, 'destroy']);
