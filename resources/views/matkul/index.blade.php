@@ -25,8 +25,8 @@
       <tr>
         <td>{{ $matkul->kode }}</td>
         <td>{{ $matkul->nama }}</td>
-        <td>{{ $matkul->id_Dosen }}</td>
-        <td>{{ $matkul->id_Mahasiswa }}</td>
+        <td>{{ $matkul->matdos->nama }}</td>
+        <td>{{ $matkul->matmah->nama }}</td>
         <td>
           <a href='/matkul/edit/{{ $matkul->id }}' class="btn btn-warning">EDIT</a>
           <form method="post" action="/matkul/delete/{{ $matkul->id }}">

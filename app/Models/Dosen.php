@@ -11,6 +11,6 @@ class Dosen extends Model
     protected $guarded = ['id'];
     public function dosmat()
     {
-        return $this->hasMany(Matkul::class,'id_dosen','id');
+        return $this->hasMany(Matkul::class,'id_Dosen','id');
     }
 }
