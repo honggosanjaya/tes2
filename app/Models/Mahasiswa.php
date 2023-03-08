@@ -11,6 +11,6 @@ class Mahasiswa extends Model
     protected $guarded = ['id'];
     public function mahmat()
     {
-        return $this->hasMany(Matkul::class,'id_mahasiswa','id');
+        return $this->hasMany(Matkul::class,'id_Mahasiswa','id');
     }
 }

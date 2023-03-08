@@ -12,10 +12,10 @@ class Matkul extends Model
 
     public function matdos()
     {
-        return $this->belongsTo(Dosen::class,'id_dosen');
+        return $this->belongsTo(Dosen::class,'id_Dosen');
     }
     public function matmah()
     {
-        return $this->belongsTo(Mahasiswa::class,'id_mahasiswa');
+        return $this->belongsTo(Mahasiswa::class,'id_Mahasiswa');
     }
 }

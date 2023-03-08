@@ -16,7 +16,7 @@ class mahasiswacontroller extends Controller
      */
     public function index()
     {
-        $mahasiswa=mahasiswa::get();
+        $mahasiswa=mahasiswa::where('status','1')->get();
         return view('mahasiswa.index', [
             'mahasiswa'=>$mahasiswa
         ]);
@@ -57,6 +57,7 @@ class mahasiswacontroller extends Controller
         'NIM' => $request -> NIM,
         'jurusan' => $request -> jurusan,
         'email' => $request -> email,
+        'status'=>'1',
         'created_at' => now(),
         'updated_at' => now(),
         ]);
@@ -139,7 +140,9 @@ class mahasiswacontroller extends Controller
     public function destroy($id)
     {
         
-        mahasiswa::find($id)->delete();
+        mahasiswa::find($id)->update([
+            'status'=>'0'
+        ]);
         return redirect('/mahasiswa');
         //
     }

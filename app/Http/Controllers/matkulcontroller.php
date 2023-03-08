@@ -15,7 +15,7 @@ class matkulcontroller extends Controller
      */
     public function index()
     {
-        $matkuls = Matkul::get();
+        $matkuls = Matkul::where('status','1')->get();
         return view('matkul.index', [
           'matkuls'=>$matkuls
         ]);
@@ -28,8 +28,8 @@ class matkulcontroller extends Controller
      */
     public function create()
     {
-      $mahasiswas = Mahasiswa::get();
-      $dosens = Dosen::get();
+      $mahasiswas = Mahasiswa::where('status','1')->get();
+      $dosens = Dosen::where('status','1')->get();
       return view('matkul.add',[
         'mahasiswas' => $mahasiswas,
         'dosens' => $dosens
@@ -56,6 +56,7 @@ class matkulcontroller extends Controller
         'nama' => $request->nama,
         'id_Dosen' => $request->id_Dosen,
         'id_Mahasiswa' => $request->id_Mahasiswa,
+        'status'=>'1',
         'created_at' => now(),
         'updated_at' => now()
       ]);
@@ -126,7 +127,9 @@ class matkulcontroller extends Controller
      */
     public function destroy($id)
     {
-      Matkul::where('id', $id)->delete();
+      Matkul::where('id', $id)->update([
+        'status'=>'0'
+    ]);
       return redirect('/matkul'); 
     }
 }

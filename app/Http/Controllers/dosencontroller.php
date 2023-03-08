@@ -14,7 +14,7 @@ class dosencontroller extends Controller
      */
     public function index()
     {
-        $dosens=dosen::get();
+        $dosens=dosen::where('status','1')->get();
         return view('dosen.index', [
             'dosens'=>$dosens
         ]);
@@ -54,6 +54,7 @@ class dosencontroller extends Controller
         'nama' => $request -> nama,
         'kode_dosen' => $request -> kode_dosen,
         'email' => $request -> email,
+        'status'=>'1',
         'created_at' => now(),
         'updated_at' => now(),
         ]);
@@ -124,8 +125,10 @@ class dosencontroller extends Controller
     public function destroy($id)
     {
         
-        dosen::find($id)->delete();
-        return redirect('/dosen');
+        dosen::find($id)->update([
+            'status'=>'0'
+        ]);
+        return view('dosen.index');
         //
     }
 }
